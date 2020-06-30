@@ -1,0 +1,72 @@
+@import '../../../assets/css/variables.css';
+
+.readable {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 992px;
+	margin: 20px auto;
+	min-height: calc(100vh - 171px);
+	position: relative;
+
+	@media (--screen-lg) {
+		min-height: calc(100vh - 189px);
+		margin: 64px auto;
+	}
+
+	& h1,
+	& h2,
+	& h3,
+	& h4,
+	& h5,
+	& h6 {
+		padding: 0;
+		margin: 20px 0;
+	}
+
+	& a:not([class]) {
+		display: inline-block;
+		padding: 5px 0;
+	}
+
+	& ul,
+	& ol {
+		& a:not([class]) {
+			display: initial;
+			padding: 0;
+		}
+	}
+
+	&.noOrderedLists {
+		& ol {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			& li {
+				padding-left: 0;
+				margin-left: 0;
+
+				&:before {
+					content: none;
+				}
+			}
+		}
+	}
+
+	&.noUnorderedLists {
+		& ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			& li {
+				padding-left: 0;
+				margin-left: 0;
+
+				&:before {
+					content: none;
+				}
+			}
+		}
+	}
+}
