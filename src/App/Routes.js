@@ -35,6 +35,11 @@ export const routes = [
 		page: "About",
 	},
 	{
+		exact: true,
+		path: `/:lang(${availableLangs})/aboutGraphQL`,
+		page: "AboutGraphQL",
+	},
+	{
 		loadData,
 		exact: true,
 		path: `/:lang(${availableLangs})/redux-store`,

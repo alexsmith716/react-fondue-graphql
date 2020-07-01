@@ -8,6 +8,12 @@ const createStyledComponentsTransformer = require('typescript-plugin-styled-comp
 	.default;
 const styledComponentsTransformer = createStyledComponentsTransformer();
 
+const generatedIdent = (name, localName, lr) => {
+	const b = Buffer.from(lr).toString('base64');
+	// eslint-disable-next-line space-infix-ops
+	return `${name}__${localName}--${b.substring(b.length - 12, b.length - 3)}`;
+};
+
 module.exports = {
 	name: 'server',
 	target: 'node',
@@ -66,8 +72,14 @@ module.exports = {
 						options: {
 							onlyLocals: true,
 							modules: {
-								mode: 'local',
+								getLocalIdent: (loaderContext, localIdentName, localName) => {
+									const lr = loaderContext.resourcePath;
+									if (path.basename(lr).indexOf('graphiql.css') !== -1) {
+										return localName;
+									}
+								},
 								localIdentName: '[hash:base64:5]',
+								mode: 'local',
 							},
 						},
 					},

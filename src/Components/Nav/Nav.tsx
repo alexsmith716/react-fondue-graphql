@@ -142,6 +142,22 @@ class Nav extends Component<NavProps, NavState> {
 										ReactFondue
 									</NavLink>
 								</li>
+								<li>
+									<NavLink
+										to={`/${lang}/aboutGraphQL`}
+										activeClassName={styles.active}
+										onClick={(e: any) =>
+											this.closeMenu(
+												e,
+												`/${lang}/aboutGraphQL`,
+												history.push,
+											)
+										}
+										exact
+									>
+										About GraphQL
+									</NavLink>
+								</li>
 							</ul>
 						</NavItem>
 					</ul>

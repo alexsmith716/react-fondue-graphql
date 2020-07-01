@@ -206,9 +206,9 @@ export default ({ clientStats }) => async (req, res) => {
 				helmet.title
 			}${helmet.meta.toString()}${helmet.link.toString()}</head><body><div id="react-root">${app}</div>${js}${cssHash}<script>window.REDUX_DATA = ${serialize(
 				store.getState(),
-			)}</script>{/* ----------------- new ----------------------- */}<script>window.APOLLO_STATE = ${serialize(
+			)}</script><script>window.APOLLO_STATE = ${serialize(
 				clientApollo.extract(),
-			)}</script>{/* ----------------- endnew -------------------- */}</body></html>`,
+			)}</script></body></html>`,
 		);
 
 };
