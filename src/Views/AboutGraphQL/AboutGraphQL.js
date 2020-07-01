@@ -15,7 +15,7 @@ import {
 	useApolloClient, } from '@apollo/client';
 
 import {
-  fragmentTypeDroid,
+	fragmentTypeDroid,
 } from "../../graphql/fragments/fragments";
 
 // address hooks and TS later
