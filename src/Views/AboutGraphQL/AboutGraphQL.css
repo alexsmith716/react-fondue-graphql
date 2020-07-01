@@ -1,0 +1,12 @@
+@import '../../assets/css/variables.css';
+
+.flexContainerFullVhCentered {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.heightOneHundredPercent {
+	height: 100%;
+}
