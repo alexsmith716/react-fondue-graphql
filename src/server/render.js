@@ -210,5 +210,4 @@ export default ({ clientStats }) => async (req, res) => {
 				clientApollo.extract(),
 			)}</script></body></html>`,
 		);
-
 };
