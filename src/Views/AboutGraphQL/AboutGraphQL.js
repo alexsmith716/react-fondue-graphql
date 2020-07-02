@@ -8,11 +8,13 @@ const styles = require("./AboutGraphQL.css");
 const dataEn = require("./data-aboutGraphQL-en.md");
 const dataDe = require("./data-aboutGraphQL-de.md");
 import { t } from "../../Components/Languages";
+
 import { 
-	gql, 
-	useQuery, 
+	gql,
+	useQuery,
 	useMutation,
-	useApolloClient, } from '@apollo/client';
+	useApolloClient,
+} from '@apollo/client';
 
 import {
 	fragmentTypeDroid,

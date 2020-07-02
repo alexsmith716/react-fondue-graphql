@@ -67,8 +67,7 @@ module.exports = {
 							onlyLocals: true,
 							modules: {
 								getLocalIdent: (loaderContext, localIdentName, localName) => {
-									const lr = loaderContext.resourcePath;
-									if (path.basename(lr).indexOf('graphiql.css') !== -1) {
+									if (path.basename(loaderContext.resourcePath).indexOf('graphiql.css') !== -1) {
 										return localName;
 									}
 								},
@@ -136,6 +135,7 @@ module.exports = {
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
+				IS_CLIENT: JSON.stringify(false),
 				NODE_ENV: JSON.stringify('production'),
 			},
 		}),

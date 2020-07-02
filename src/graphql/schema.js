@@ -1,47 +1,69 @@
 import { makeExecutableSchema } from 'graphql-tools';
 
-import { apolloSamples } from '../server/responseSchema';
+// ------------------------------------------------------------------
+
+const starships = [
+	{
+		id: '3000',
+		name: 'Millenium FalconZZ',
+		length: 34.37,
+	},
+	{
+		id: '3001',
+		name: 'X-WingZZ',
+		length: 12.5,
+	},
+	{
+		id: '3002',
+		name: 'TIE Advanced x1ZZ',
+		length: 9.2,
+	},
+	{
+		id: '3003',
+		name: 'Imperial shuttleZZ',
+		length: 20,
+	},
+];
+
+const starshipData = {};
+
+starships.forEach((ship) => {
+	starshipData[ship.id] = ship;
+});
+
+// ------------------------------------------------------------------
+
+function getStarship(id) {
+	return starshipData[id];
+}
+
+// ------------------------------------------------------------------
 
 export const typeDefs = `
-  type Sample {
-    id: Int!
-    code: String!
-    name: String!
-    likeCount: Int!
-    description: String
-  }
+	enum LengthUnit {
+		METER
+		FOOT
+	}
 
-  type Query {
-    samples(maxLength: Int): [Sample]
-  }
+	type Starship {
+		id: ID!
+		name: String!
+		length(unit: LengthUnit = METER): Float
+		coordinates: [[Float!]!]
+	}
 
-  type Mutation {
-    addLike(id: Int): Sample
-  }
+	type Query {
+		starship(id: ID!): Starship
+	}
 `;
 
-export const resolvers = {
-  Query: {
-    samples: (obj, { maxLength }: { maxLength?: number }) => {
-      return apolloSamples.slice(0, maxLength || apolloSamples.length);
-    },
-  },
-  Mutation: {
-    addLike: (obj, { id }: { id: number }) => {
-      const item = apolloSamples.find(({ id: fileId }) => id === fileId);
-
-      if (item) {
-        ++item.likeCount;
-
-        return item;
-      } else {
-        throw new Error('Could not find');
-      }
-    },
-  },
+export const localResolvers = {
+	Query: {
+		starship: (root, { id }) => getStarship(id),
+	},
 };
 
-export const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
+export const localSchema = makeExecutableSchema({
+	typeDefs,
+	localResolvers,
 });
